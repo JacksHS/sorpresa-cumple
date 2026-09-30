@@ -1,0 +1,1769 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¡Feliz Cumpleaños! 💜 Festa & Borahae Special 🎉✨</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Outfit", "sans-serif"],
+              handwriting: ["Caveat", "cursive"],
+              serif: ["Playfair Display", "serif"],
+              kpop: ["Plus Jakarta Sans", "sans-serif"],
+            },
+            colors: {
+              borahae: {
+                50: "#FAF5FF",
+                100: "#F3E8FF",
+                200: "#E9D5FF",
+                300: "#D8B4FE",
+                400: "#C084FC",
+                500: "#A855F7",
+                600: "#9333EA",
+                700: "#7E22CE",
+                800: "#6B21A8",
+                900: "#581C87",
+                950: "#3B0764",
+              },
+              armypurple: "#8A2BE2",
+              btsneon: "#C77DFF",
+              btsdark: "#0f051d",
+              cottonpink: "#FFC2D1",
+              goldstar: "#FFD166",
+            },
+            animation: {
+              "float-slow": "float 6s ease-in-out infinite",
+              "float-mid": "float 4s ease-in-out infinite",
+              "float-fast": "float 2.5s ease-in-out infinite",
+              "pulse-glow": "pulseGlow 2.5s infinite",
+              "spin-slow": "spin 18s linear infinite",
+              shimmer: "shimmer 2.5s linear infinite",
+              "bounce-soft": "bounceSoft 2s ease-in-out infinite",
+              "spotlight-left": "spotlightLeft 8s ease-in-out infinite",
+              "spotlight-right":
+                "spotlightRight 8s ease-in-out infinite alternate",
+              laser: "laserSweep 4s ease-in-out infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+                "50%": { transform: "translateY(-16px) rotate(2deg)" },
+              },
+              bounceSoft: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-8px)" },
+              },
+              pulseGlow: {
+                "0%, 100%": {
+                  filter: "drop-shadow(0 0 15px rgba(192, 132, 252, 0.6))",
+                },
+                "50%": {
+                  filter: "drop-shadow(0 0 30px rgba(192, 132, 252, 0.95))",
+                },
+              },
+              shimmer: {
+                "0%": { backgroundPosition: "-200% 0" },
+                "100%": { backgroundPosition: "200% 0" },
+              },
+              spotlightLeft: {
+                "0%, 100%": { transform: "rotate(-25deg) scaleY(1)" },
+                "50%": { transform: "rotate(10deg) scaleY(1.15)" },
+              },
+              spotlightRight: {
+                "0%, 100%": { transform: "rotate(25deg) scaleY(1)" },
+                "50%": { transform: "rotate(-10deg) scaleY(1.15)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Estilos globales y fondos K-Pop */
+      :root {
+        --army-glow: #a855f7;
+      }
+
+      body {
+        background: radial-gradient(
+          circle at 50% 0%,
+          #2e1065 0%,
+          #150529 45%,
+          #090214 100%
+        );
+        color: #f8fafc;
+        min-height: 100vh;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+
+      /* Fondo de galaxia con estrellas interactivas */
+      #galaxy-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Luces de concierto (Concert Spotlights) */
+      .spotlight {
+        position: fixed;
+        top: -100px;
+        width: 320px;
+        height: 90vh;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.18;
+        filter: blur(40px);
+        transform-origin: top center;
+      }
+      .spotlight-1 {
+        left: 10%;
+        background: linear-gradient(
+          180deg,
+          rgba(168, 85, 247, 0.9) 0%,
+          rgba(236, 72, 153, 0.5) 40%,
+          transparent 100%
+        );
+      }
+      .spotlight-2 {
+        right: 10%;
+        background: linear-gradient(
+          180deg,
+          rgba(99, 102, 241, 0.9) 0%,
+          rgba(168, 85, 247, 0.5) 40%,
+          transparent 100%
+        );
+      }
+
+      /* Efecto Washi Tape decorativo en tarjetas y polaroids */
+      .washi-tape-purple {
+        background: linear-gradient(
+          90deg,
+          rgba(216, 180, 254, 0.85) 0%,
+          rgba(244, 114, 182, 0.85) 100%
+        );
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%) rotate(-1.5deg);
+        width: 80px;
+        height: 22px;
+        z-index: 15;
+        clip-path: polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%);
+      }
+
+      /* Tarjetas holográficas K-Pop (Photocards) con efecto 3D tilt y reflejo irisado */
+      .photocard-container {
+        perspective: 1000px;
+      }
+
+      .photocard {
+        transform-style: preserve-3d;
+        transition:
+          transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+          box-shadow 0.3s ease;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .photocard:hover {
+        box-shadow:
+          0 20px 40px -10px rgba(168, 85, 247, 0.5),
+          0 0 25px rgba(236, 72, 153, 0.4);
+      }
+
+      .photocard .holo-overlay {
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(
+          115deg,
+          transparent 20%,
+          rgba(255, 255, 255, 0.35) 40%,
+          rgba(236, 72, 153, 0.4) 50%,
+          rgba(56, 189, 248, 0.4) 60%,
+          rgba(250, 204, 21, 0.3) 70%,
+          transparent 90%
+        );
+        background-size: 250% 250%;
+        opacity: 0;
+        mix-blend-mode: color-dodge;
+        pointer-events: none;
+        transition: opacity 0.35s ease;
+        z-index: 5;
+      }
+
+      .photocard:hover .holo-overlay {
+        opacity: 0.9;
+        animation: holoMove 2.5s infinite alternate;
+      }
+
+      @keyframes holoMove {
+        0% {
+          background-position: 0% 0%;
+        }
+        100% {
+          background-position: 100% 100%;
+        }
+      }
+
+      /* Vidrio K-Pop Glassmorphism */
+      .kpop-glass {
+        background: rgba(28, 14, 46, 0.72);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(192, 132, 252, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      }
+
+      .kpop-glass-card {
+        background: rgba(38, 18, 64, 0.65);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(216, 180, 254, 0.2);
+      }
+
+      /* Texto con brillo neón */
+      .neon-text-purple {
+        text-shadow:
+          0 0 10px rgba(192, 132, 252, 0.8),
+          0 0 20px rgba(168, 85, 247, 0.6),
+          0 0 35px rgba(147, 51, 234, 0.4);
+      }
+
+      .neon-text-pink {
+        text-shadow:
+          0 0 10px rgba(244, 114, 182, 0.8),
+          0 0 25px rgba(236, 72, 153, 0.6);
+      }
+
+      /* Borde gradiente animado */
+      .glow-border {
+        position: relative;
+      }
+      .glow-border::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #ec4899, #a855f7, #6366f1, #ec4899);
+        background-size: 300% 300%;
+        animation: borderGlow 6s linear infinite;
+        z-index: -1;
+        opacity: 0.75;
+      }
+
+      @keyframes borderGlow {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Partículas de corazones flotantes Borahae */
+      .floating-heart {
+        position: fixed;
+        pointer-events: none;
+        z-index: 100;
+        animation: rise 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.8));
+      }
+
+      @keyframes rise {
+        0% {
+          opacity: 1;
+          transform: translateY(0) scale(0.6) rotate(0deg);
+        }
+        50% {
+          opacity: 0.9;
+          transform: translateY(-240px) scale(1.3) rotate(20deg);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-550px) scale(0.8) rotate(45deg);
+        }
+      }
+
+      /* Ecualizador animado del reproductor */
+      .eq-bar {
+        width: 4px;
+        background: linear-gradient(180deg, #ec4899, #a855f7);
+        border-radius: 4px;
+        transition: height 0.15s ease;
+      }
+
+      /* Brillo de vela */
+      .flame-glow {
+        box-shadow:
+          0 0 25px 8px rgba(251, 191, 36, 0.8),
+          0 0 50px 15px rgba(249, 115, 22, 0.5);
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0f051d;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #6b21a8;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #a855f7;
+      }
+    </style>
+  </head>
+  <body
+    class="antialiased relative selection:bg-purple-600 selection:text-white"
+  >
+    <!-- Canvas de fondo para estrellas, cometas y polvo cósmico -->
+    <canvas id="galaxy-canvas"></canvas>
+
+    <!-- Luces de escenario K-Pop en el fondo -->
+    <div class="spotlight spotlight-1 animate-spotlight-left"></div>
+    <div class="spotlight spotlight-2 animate-spotlight-right"></div>
+
+    <!-- 
+    ====================================================================
+    PANTALLA DE APERTURA: El sobre K-Pop VIP FESTA con sello Borahae
+    ==================================================================== 
+  -->
+    <div
+      id="intro-screen"
+      class="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 bg-gradient-to-b from-[#1c0836] via-[#100424] to-[#080114] transition-all duration-1000"
+    >
+      <!-- Elementos decorativos flotando alrededor del sobre -->
+      <div
+        class="absolute top-12 left-10 text-4xl animate-float-slow opacity-80"
+      >
+        💜
+      </div>
+      <div
+        class="absolute top-20 right-14 text-3xl animate-float-mid text-pink-300 opacity-80"
+      >
+        ✨
+      </div>
+      <div
+        class="absolute bottom-20 left-16 text-3xl animate-float-fast text-purple-300 opacity-80"
+      >
+        🎶
+      </div>
+      <div
+        class="absolute bottom-24 right-16 text-4xl animate-float-slow opacity-80"
+      >
+        🎂
+      </div>
+
+      <!-- Badge VIP FESTA -->
+      <div class="text-center max-w-md w-full mx-auto relative z-10">
+        <div
+          class="inline-flex items-center gap-2 px-5 py-2 mb-5 text-xs font-bold tracking-widest text-purple-200 uppercase bg-purple-900/60 rounded-full border border-purple-400/40 shadow-[0_0_20px_rgba(168,85,247,0.4)] backdrop-blur-md"
+        >
+          <span class="animate-pulse">✨</span> SPECIAL FESTA INVITATION
+          <span class="animate-pulse">✨</span>
+        </div>
+
+        <h1
+          class="text-3xl sm:text-5xl font-serif text-white mb-3 font-extrabold tracking-tight neon-text-purple"
+        >
+          Para ti, QUERIDA 💜
+        </h1>
+        <p class="text-purple-200/80 mb-8 text-sm sm:text-base font-sans">
+          Preparé una sorpresa medio rara pero llena de luces, ritmo y mucho cariño para
+          tu día especial 
+        </p>
+
+        <!-- Sobre Interactivo K-Pop -->
+        <button
+          type="button"
+          onclick="openGift()"
+          aria-label="Abrir invitacion de cumpleanos"
+          class="cursor-pointer group relative mx-auto w-72 h-52 bg-gradient-to-br from-[#7e22ce] via-[#9333ea] to-[#c084fc] rounded-3xl shadow-[0_15px_45px_rgba(147,51,234,0.6)] flex items-center justify-center transition-all duration-500 hover:scale-105 hover:shadow-[0_20px_60px_rgba(192,132,252,0.85)] glow-border"
+        >
+          <!-- Solapa del sobre -->
+          <div
+            class="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#9333ea] to-[#7e22ce] rounded-t-3xl [clip-path:polygon(0_0,100%_0,50%_100%)] group-hover:brightness-110 transition-all"
+          ></div>
+
+          <!-- Líneas holográficas decorativas -->
+          <div
+            class="absolute inset-0 rounded-3xl border border-white/20 pointer-events-none"
+          ></div>
+
+          <!-- Sello de Cera Borahae (Corazón Púrpura K-Pop) -->
+          <div
+            class="relative z-10 w-20 h-20 bg-gradient-to-tr from-[#581c87] via-[#7e22ce] to-[#d8b4fe] rounded-full flex flex-col items-center justify-center shadow-2xl border-2 border-purple-200/60 group-hover:scale-110 transition-transform"
+          >
+            <span class="text-2xl animate-pulse">💜</span>
+            <span
+              class="text-[9px] font-bold tracking-wider text-purple-100 uppercase mt-0.5"
+              >BORAHAE</span
+            >
+          </div>
+
+          <span
+            class="absolute bottom-4 text-xs tracking-wider text-white font-medium drop-shadow-md flex items-center gap-1.5 group-hover:text-purple-200 transition-colors"
+          >
+            <span>Toca el sello para abrir la sorpresa</span> ✨
+          </span>
+        </button>
+
+        <div
+          class="mt-8 flex items-center justify-center gap-3 text-xs text-purple-300/80"
+        >
+          <span class="flex h-2.5 w-2.5 relative">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500"
+            ></span>
+          </span>
+          <span>Con músiquita para las buenas vibras jsjs</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+    ====================================================================
+    ARMY BOMB FLOTANTE INTERACTIVO (Lightstick Oficial de Cumpleaños)
+    ==================================================================== 
+  -->
+    <div
+      id="army-bomb-widget"
+      class="fixed bottom-6 right-6 z-40 flex flex-col items-end"
+    >
+      <!-- Tooltip de ayuda -->
+      <div
+        id="bomb-tooltip"
+        class="mb-2 px-3 py-1.5 bg-purple-950/90 text-purple-200 text-xs font-semibold rounded-xl border border-purple-400/40 shadow-lg backdrop-blur-md animate-bounce-soft flex items-center gap-2"
+      >
+        <span>¡Toca tu ARMY Bomb! 💜</span>
+        <button
+          onclick="
+            document.getElementById('bomb-tooltip').style.display = 'none'
+          "
+          class="text-purple-400 hover:text-white"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Botón Lightstick -->
+      <button
+        onclick="cycleArmyBombMode()"
+        title="Cambiar modo de luz del ARMY Bomb"
+        class="relative group p-3 bg-gradient-to-br from-purple-900 via-purple-950 to-black rounded-full border-2 border-purple-400/60 shadow-[0_0_25px_rgba(168,85,247,0.7)] hover:scale-110 active:scale-95 transition-all"
+      >
+        <!-- Glow alrededor del lightstick -->
+        <div
+          id="bomb-halo"
+          class="absolute inset-0 rounded-full bg-purple-500/40 blur-md group-hover:bg-purple-500/60 transition-all"
+        ></div>
+
+        <!-- Icono Lightstick / Bomba ARMY -->
+        <div
+          class="relative z-10 w-12 h-12 flex flex-col items-center justify-center"
+        >
+          <!-- Esfera del lightstick -->
+          <div
+            id="bomb-bulb"
+            class="w-8 h-8 rounded-full bg-gradient-to-t from-purple-300 via-white to-purple-100 flex items-center justify-center shadow-[0_0_15px_#c084fc] transition-colors duration-500"
+          >
+            <span class="text-sm font-bold text-purple-900">💜</span>
+          </div>
+          <!-- Mango -->
+          <div
+            class="w-2.5 h-3.5 bg-gray-900 rounded-b-sm border-t border-purple-400 mt-0.5"
+          ></div>
+        </div>
+
+        <!-- Badge de modo actual -->
+        <span
+          id="bomb-mode-label"
+          class="absolute -top-2 -left-2 bg-pink-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow border border-white/40"
+        >
+          Borahae
+        </span>
+      </button>
+    </div>
+
+    <!-- 
+    ====================================================================
+    CONTENIDO PRINCIPAL (Se desbloquea al tocar el sobre)
+    ==================================================================== 
+  -->
+    <main
+      id="main-content"
+      class="hidden opacity-0 transition-opacity duration-1000 max-w-5xl mx-auto px-4 py-8 sm:py-14 relative z-10"
+    >
+      <!-- 
+      HEADER FESTIVO ESTILO CONCIERTO K-POP
+    -->
+      <header class="text-center relative mb-12 sm:mb-16">
+        <!-- Banner festa -->
+        <div
+          class="inline-flex items-center gap-2 px-5 py-2 rounded-full kpop-glass border border-purple-400/30 text-purple-300 text-xs sm:text-sm font-semibold mb-5 shadow-[0_0_20px_rgba(147,51,234,0.3)]"
+        >
+          <span class="text-pink-400">✨ BTS SORPRESAA XD✨</span>
+          <span
+            class="bg-purple-500/30 text-purple-200 px-2 py-0.5 rounded-full text-[11px]"
+            >HAPPY BIRTHDAY</span
+          >
+        </div>
+
+        <!-- TÍTULO PRINCIPAL CON BRILLO NEÓN -->
+        <h1
+          class="text-4xl sm:text-6xl md:text-7xl font-serif font-black tracking-tight mb-4 neon-text-purple"
+        >
+          ¡Feliz Cumpleaños,
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-300 to-indigo-300"
+            >Querida</span
+          >! 💜
+        </h1>
+
+        <p
+          class="max-w-2xl mx-auto text-purple-200/90 text-base sm:text-lg font-sans leading-relaxed"
+        >
+          Como dijo BTS(o eso dice gpt, no me pegues plis):
+          <em class="text-pink-300 font-medium"
+            >"Tú eres la estrella más brillante de mi galaxia"</em
+          >. Hoy todo el universo de los chinitos K-Pop y yo celebramos tu vida, tus risas y tu
+          magia 
+        </p>
+
+        <!-- Mini Badges de Estilo K-Pop -->
+        <div
+          class="mt-6 flex flex-wrap justify-center gap-2 sm:gap-3 text-xs font-semibold"
+        >
+          <span
+            class="px-3.5 py-1.5 rounded-full bg-purple-900/50 border border-purple-400/30 text-purple-200 flex items-center gap-1.5"
+          >
+            <i class="fa-solid fa-heart text-pink-400"></i> Borahae 7
+          </span>
+  
+        </div>
+
+        <!-- 
+        ====================================================================
+        REPRODUCTOR K-POP ESTILO VINILO / SPOTIFY DREAM (Mejora total del audio)
+        ==================================================================== 
+      -->
+        <div
+          class="mt-10 max-w-lg mx-auto kpop-glass rounded-2xl p-4 sm:p-5 border border-purple-400/30 shadow-[0_10px_35px_rgba(0,0,0,0.5)] glow-border"
+        >
+          <div class="flex items-center gap-4">
+            <!-- Vinilo giratorio con imagen K-pop -->
+            <div class="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
+              <div
+                id="vinyl-disc"
+                class="w-full h-full rounded-full bg-gradient-to-tr from-gray-900 via-purple-950 to-black p-1 shadow-xl flex items-center justify-center border-2 border-purple-400/40 animate-spin-slow"
+              >
+                <!-- Surcos de vinilo -->
+                <div
+                  class="w-full h-full rounded-full border border-purple-500/20 flex items-center justify-center"
+                >
+                  <!-- Centro de vinilo -->
+                  <div
+                    class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center text-white text-[10px] font-bold shadow-inner"
+                  >
+                    BTS 💜
+                  </div>
+                </div>
+              </div>
+              <!-- Brazo de tocadiscos decorativo -->
+              <div class="absolute -top-1 -right-1 text-purple-300 text-xs">
+                🎵
+              </div>
+            </div>
+
+            <!-- Info de pista y controles -->
+            <div class="flex-1 text-left min-w-0">
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-[10px] uppercase tracking-wider text-pink-400 font-bold bg-pink-950/60 px-2 py-0.5 rounded border border-pink-500/30"
+                >
+                  K-Pop Music Box
+                </span>
+                <!-- Ecualizador de ondas -->
+                <div class="flex items-end gap-1 h-4" id="eq-container">
+                  <div class="eq-bar h-2"></div>
+                  <div class="eq-bar h-4"></div>
+                  <div class="eq-bar h-1"></div>
+                  <div class="eq-bar h-3"></div>
+                  <div class="eq-bar h-2"></div>
+                </div>
+              </div>
+
+              <h3
+                id="current-song-title"
+                class="text-sm sm:text-base font-bold text-white truncate mt-1"
+              >
+                BTS - Magic Shop
+              </h3>
+              <p
+                id="current-song-artist"
+                class="text-xs text-purple-300 truncate"
+              >
+                BTS · Map of the Soul: Persona
+              </p>
+
+              <!-- Controles -->
+              <div class="mt-3 flex flex-wrap items-center gap-2 sm:gap-3">
+                <button
+                  type="button"
+                  onclick="toggleMusic()"
+                  id="play-pause-btn"
+                  aria-label="Pausar musica"
+                  class="w-10 h-10 shrink-0 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white flex items-center justify-center shadow-[0_0_15px_rgba(236,72,153,0.5)] hover:scale-105 active:scale-95 transition-transform"
+                >
+                  <i id="play-icon" class="fa-solid fa-pause text-xs"></i>
+                </button>
+
+                <button
+                  type="button"
+                  onclick="changeTrack()"
+                  title="Cambiar cancion"
+                  class="min-h-10 px-3 py-2 rounded-full bg-purple-800/60 hover:bg-purple-700/60 text-purple-200 text-xs font-medium border border-purple-400/30 flex items-center gap-1.5 transition-colors"
+                >
+                  <i class="fa-solid fa-forward-step text-[10px]"></i> Siguiente
+                  Tema
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- 
+      ====================================================================
+      SECCIÓN 1: Carta Emotiva con Estilo K-Pop & BT21 Chibi Vibes
+      ==================================================================== 
+    -->
+      <section class="mb-16 sm:mb-24 relative">
+        <div
+          class="relative kpop-glass rounded-3xl p-6 sm:p-12 shadow-2xl border border-purple-400/30 overflow-hidden"
+        >
+          <!-- Washi tape decorativo arriba -->
+          <div class="washi-tape-purple"></div>
+
+          <!-- Decoración de fondo de la carta -->
+          <div
+            class="absolute -right-12 -bottom-12 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"
+          ></div>
+
+          <!-- Encabezado de la carta -->
+          <div
+            class="flex items-center gap-4 mb-8 border-b border-purple-400/20 pb-5"
+          >
+            <div
+              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 text-white flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(168,85,247,0.5)]"
+            >
+              💌
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h2 class="text-xl sm:text-2xl font-bold text-white font-serif">
+                  Para usted señorita en su día
+                </h2>
+                <span class="text-pink-400 text-sm">✨</span>
+              </div>
+              <p class="text-xs sm:text-sm text-purple-300">
+                Posdata: Yo no conosco a los chinitos, no me pegues jsjs
+              </p>
+            </div>
+          </div>
+
+          <!-- Mensaje de felicitación personalizado con toques K-Pop -->
+          <div
+            class="space-y-5 text-purple-100/90 leading-relaxed text-base sm:text-lg font-sans"
+          >
+            <p>
+              ¡Hola querida! Hoy no es un día cualquiera en el calendario, hoy es el
+              cumpleaños de una de las personitas más especiales, divertidas y
+              valiosas de todo este planeta.
+            </p>
+            <p>
+              Como dice una de las canciones de los chinitos (eso espero):
+              <span class="text-pink-300 font-semibold"
+                >"Tú me diste lo mejor de mí, así que tú tendrás lo mejor de ti"
+                </span
+              >. Gracias por cada risa compartida, por los chismes legendarios,
+              por acompañarme en los días buenos y en los no tan buenos, y por
+              ser esa compañera incondicional no solo para mi, sino para todos y que tiene una luz que alegra a
+              cualquiera.
+            </p>
+            <p>
+              Te deseo un año repleto de exitos, salud, mas horas de sueño, maquetas terminadas,
+              metas cumplidas y muchos momentos especiales. ¡Nunca dejes de sonreír y de ser esa
+              chica increíble que inspira a todos a su alrededor! 💜
+            </p>
+          </div>
+
+          <!-- Mini Stickers Chibi de la línea K-Pop / BT21 -->
+          <div
+            class="mt-8 pt-6 border-t border-purple-400/20 flex flex-wrap items-center justify-between gap-4"
+          >
+            <div class="flex items-center gap-3">
+              <span class="text-2xl" title="Tata">❤️</span>
+              <span class="text-2xl" title="Cooky">🐰</span>
+              <span class="text-2xl" title="Chimmy">🐶</span>
+              <span class="text-2xl" title="Koya">🐨</span>
+              <span class="text-2xl" title="RJ">🦙</span>
+              <span class="text-2xl" title="Mang">🦄</span>
+              <span
+                class="text-xs text-purple-300 font-semibold bg-purple-900/50 px-3 py-1 rounded-full border border-purple-400/30"
+              >
+                Que la pases chevereeee
+              </span>
+            </div>
+
+            <!-- Firma manuscrita -->
+            <div class="text-right">
+              <p
+                class="font-handwriting text-3xl sm:text-4xl text-pink-400 font-bold"
+              >
+                ¡I Purple You Siempre! 💜
+              </p>
+              <span class="text-xs text-purple-300/70 italic"
+                >Tu amigo y compañero</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+      ====================================================================
+      SECCIÓN 2: PHOTOCARD BINDER K-POP (Tarjetas Holográficas 3D)
+      ==================================================================== 
+    -->
+      <section class="mb-16 sm:mb-24">
+        <div class="text-center max-w-xl mx-auto mb-10">
+          <span
+            class="text-xs font-bold uppercase tracking-widest text-pink-400 bg-pink-950/60 px-3 py-1 rounded-full border border-pink-400/30"
+          >
+            Por muchos cumples especiales 📸
+          </span>
+          <h2
+            class="text-2xl sm:text-4xl font-serif font-bold text-white mt-2 mb-2 neon-text-purple"
+          >
+            Colección de Photocards
+          </h2>
+          <p class="text-sm text-purple-200/80">
+            Pasa el cursor o toca cada photocard para
+            descubrir una dedicatoria especial ✨
+          </p>
+        </div>
+
+        <!-- Grid de 4 Photocards Holográficas -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Photocard 1: Soulmates 95z Vibe -->
+          <div
+            class="photocard-container"
+            onclick="
+              openPhotocardModal(
+                'V & Jimin Vibe 💜',
+                'Soulmates de Vida',
+                'Como Jimin y Tae (chinitos -.-), nuestra amistad tiene esa vibra única donde una mirada basta para entender el chiste o el drama. ¡Gracias por ser mi persona favorita para reír sin parar!',
+              )
+            "
+          >
+            <div
+              class="photocard kpop-glass-card rounded-2xl p-4 border border-purple-400/40 relative overflow-hidden group"
+            >
+              <div class="holo-overlay"></div>
+              <!-- Washi tape mini -->
+              <div
+                class="absolute top-2 right-2 text-xs text-purple-300 font-bold bg-purple-900/80 px-2 py-0.5 rounded-md border border-purple-400/30"
+              >
+              
+              </div>
+
+              <!-- Imagen artística decorativa -->
+              <div
+                class="w-full h-56 rounded-xl bg-gradient-to-tr from-purple-800 via-indigo-900 to-pink-700 flex flex-col items-center justify-center p-4 relative overflow-hidden text-center group-hover:scale-[1.02] transition-transform"
+              >
+                <span class="text-5xl mb-2 animate-bounce-soft">💜</span>
+                <h4 class="font-bold text-white text-base">Soulmate Energy</h4>
+                <p class="text-[11px] text-purple-200 mt-1">
+                  "You are the best, my soulmate"
+                </p>
+                <div class="absolute bottom-2 inset-x-0 text-center">
+                  <span
+                    class="text-[10px] text-pink-300 font-semibold tracking-wider uppercase"
+                    > Una persona especial</span
+                  >
+                </div>
+              </div>
+
+              <div class="mt-3 text-left">
+                <h3
+                  class="text-sm font-bold text-white group-hover:text-pink-300 transition-colors"
+                >
+                  Card 1: The best
+                </h3>
+                <p class="text-xs text-purple-300/80">
+                 
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photocard 2: Golden Girl Jungkook Vibe -->
+          <div
+            class="photocard-container"
+            onclick="
+              openPhotocardModal(
+                'Golden Vibe ✨',
+                'El Toque Dorado',
+                'El mismísimo Golden Maknae estaría orgulloso de todo lo que logras. Tienes talento, carisma y esa chispa que ilumina cualquier lugar. ¡Este año todo lo que toques se convertirá en éxito!',
+              )
+            "
+          >
+            <div
+              class="photocard kpop-glass-card rounded-2xl p-4 border border-pink-400/40 relative overflow-hidden group"
+            >
+              <div class="holo-overlay"></div>
+              <div
+                class="absolute top-2 right-2 text-xs text-yellow-300 font-bold bg-yellow-950/80 px-2 py-0.5 rounded-md border border-yellow-400/30"
+              >
+               
+              </div>
+
+              <div
+                class="w-full h-56 rounded-xl bg-gradient-to-tr from-amber-600 via-pink-700 to-purple-900 flex flex-col items-center justify-center p-4 relative overflow-hidden text-center group-hover:scale-[1.02] transition-transform"
+              >
+                <span class="text-5xl mb-2 animate-bounce-soft">👑✨</span>
+                <h4 class="font-bold text-white text-base">Golden Girl</h4>
+                <p class="text-[11px] text-yellow-100 mt-1">
+                  "Seven days a week, always shining"
+                </p>
+                <div class="absolute bottom-2 inset-x-0 text-center">
+                  <span
+                    class="text-[10px] text-yellow-300 font-semibold tracking-wider uppercase"
+                    >Pura Actitud y Brillo</span
+                  >
+                </div>
+              </div>
+
+              <div class="mt-3 text-left">
+                <h3
+                  class="text-sm font-bold text-white group-hover:text-pink-300 transition-colors"
+                >
+                  Card 2: La Chica Dorada
+                </h3>
+                <p class="text-xs text-purple-300/80">
+            
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photocard 3: Hope & Comfort J-Hope & Suga Vibe -->
+          <div
+            class="photocard-container"
+            onclick="
+              openPhotocardModal(
+                'Hope & Comfort ☀️',
+                'Tu Energía Incomparable',
+                'Como J-Hope cuando entra a una sala o Suga(de el si escuche XD) cuando da sus mejores consejos: siempre sabes cómo subir el ánimo y hacer que todo se sienta más fácil. ¡Gracias por tu vibra positiva!',
+              )
+            "
+          >
+            <div
+              class="photocard kpop-glass-card rounded-2xl p-4 border border-indigo-400/40 relative overflow-hidden group"
+            >
+              <div class="holo-overlay"></div>
+              <div
+                class="absolute top-2 right-2 text-xs text-cyan-300 font-bold bg-cyan-950/80 px-2 py-0.5 rounded-md border border-cyan-400/30"
+              >
+              
+              </div>
+
+              <div
+                class="w-full h-56 rounded-xl bg-gradient-to-tr from-indigo-800 via-purple-900 to-cyan-800 flex flex-col items-center justify-center p-4 relative overflow-hidden text-center group-hover:scale-[1.02] transition-transform"
+              >
+                <span class="text-5xl mb-2 animate-bounce-soft">🌻🎧</span>
+                <h4 class="font-bold text-white text-base">Sunshine Spirit</h4>
+                <p class="text-[11px] text-cyan-100 mt-1">
+                  "You're my happiness"
+                </p>
+                <div class="absolute bottom-2 inset-x-0 text-center">
+                  <span
+                    class="text-[10px] text-cyan-300 font-semibold tracking-wider uppercase"
+                    >Risas y Buena Onda</span
+                  >
+                </div>
+              </div>
+
+              <div class="mt-3 text-left">
+                <h3
+                  class="text-sm font-bold text-white group-hover:text-pink-300 transition-colors"
+                >
+                  Card 3: El Rayito de Sol
+                </h3>
+                <p class="text-xs text-purple-300/80">
+                  
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photocard 4: Birthday Queen Holográfica -->
+          <div
+            class="photocard-container"
+            onclick="
+              openPhotocardModal(
+                'Birthday Queen 🎂👑',
+                'Edición Cumpleañera',
+                '¡Esta es la carta más especial de todas! Creada exclusivamente para celebrar que cumples un año más de ser maravillosa. Que el universo te recompense con el triple de la felicidad que tú entregas.',
+              )
+            "
+          >
+            <div
+              class="photocard kpop-glass-card rounded-2xl p-4 border border-pink-400/60 relative overflow-hidden group glow-border"
+            >
+              <div class="holo-overlay"></div>
+              <div
+                class="absolute top-2 right-2 text-xs text-pink-300 font-bold bg-pink-950/80 px-2 py-0.5 rounded-md border border-pink-400/30"
+              >
+              
+              </div>
+
+              <div
+                class="w-full h-56 rounded-xl bg-gradient-to-tr from-pink-600 via-purple-700 to-rose-600 flex flex-col items-center justify-center p-4 relative overflow-hidden text-center group-hover:scale-[1.02] transition-transform"
+              >
+                <span class="text-5xl mb-2 animate-bounce-soft">🎂🎉</span>
+                <h4 class="font-bold text-white text-base">Birthday Queen</h4>
+                <p class="text-[11px] text-pink-100 mt-1">
+                  "Life is sweet as honey, celebrate!"
+                </p>
+                <div class="absolute bottom-2 inset-x-0 text-center">
+                  <span
+                    class="text-[10px] text-pink-200 font-semibold tracking-wider uppercase"
+                    >La Homenajeada VIP</span
+                  >
+                </div>
+              </div>
+
+              <div class="mt-3 text-left">
+                <h3
+                  class="text-sm font-bold text-white group-hover:text-pink-300 transition-colors"
+                >
+                  Card 4: La Reina del Día
+                </h3>
+                <p class="text-xs text-pink-400 font-semibold">
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+      </section>
+
+      <!-- 
+      ====================================================================
+      SECCIÓN 3: PASTEL MÁGICO "MAGIC SHOP" (Soplar la vela y pedir deseo)
+      ==================================================================== 
+    -->
+      <section class="mb-16 sm:mb-24 text-center">
+        <div
+          class="kpop-glass p-8 sm:p-14 rounded-3xl border border-purple-400/40 shadow-2xl max-w-2xl mx-auto relative overflow-hidden glow-border"
+        >
+          <!-- Luces de fondo -->
+          <div
+            class="absolute -top-20 left-1/2 -translate-x-1/2 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"
+          ></div>
+
+          <div
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-900/60 border border-purple-400/40 text-purple-200 text-xs font-semibold mb-4"
+          >
+            <span>🎂</span> MOMENTO DEL DESEO CÓSMICO 
+          </div>
+
+          <h2
+            class="text-3xl sm:text-4xl font-serif font-extrabold text-white mb-3 neon-text-purple"
+          >
+            ¡Hora de pedir tu deseo! 
+          </h2>
+          <p
+            class="text-sm sm:text-base text-purple-200/80 mb-8 max-w-md mx-auto"
+          >
+            Cierra los ojos, piensa en lo que más ansías para este nuevo año y
+            haz clic en la vela para soplarla.
+          </p>
+
+          <!-- Pastel Animado K-Pop Style -->
+          <div
+            class="relative w-56 h-60 mx-auto flex flex-col items-center justify-end pb-4 select-none"
+          >
+            <!-- Llama de la vela Interactiva con luz mágica -->
+            <div
+              id="candle-flame"
+              onclick="blowCandle()"
+              class="w-6 h-10 bg-gradient-to-t from-amber-400 via-orange-300 to-yellow-100 rounded-full flame-glow animate-pulse cursor-pointer mb-1 transition-all duration-500 hover:scale-125"
+              title="¡Haz clic para soplar!"
+            >
+              <div
+                class="w-2 h-4 bg-white rounded-full mx-auto mt-2 opacity-80"
+              ></div>
+            </div>
+
+            <!-- Humo mágico al apagarse -->
+            <div
+              id="candle-smoke"
+              class="hidden text-pink-300 text-xs mb-2 font-mono animate-pulse"
+            >
+              ✨ ¡Deseo enviado a las estrellas! 💜
+            </div>
+
+            <!-- Mecha y Vela K-Pop Borahae -->
+            <div class="w-1.5 h-3 bg-gray-600"></div>
+            <div
+              class="w-7 h-16 bg-gradient-to-b from-purple-300 via-pink-300 to-purple-400 rounded-t-md shadow-inner border border-purple-200 flex flex-col justify-around items-center"
+            >
+              <span class="text-[9px]">💜</span>
+              <span class="text-[9px]">✨</span>
+            </div>
+
+            <!-- Piso superior del pastel (Frutillas y crema chantilly) -->
+            <div
+              class="w-36 h-12 bg-gradient-to-b from-pink-200 to-pink-300 rounded-t-2xl shadow-lg border-b-4 border-purple-400 flex items-center justify-around px-4"
+            >
+              <span class="text-sm">🍓</span>
+              <span class="text-xs">💜</span>
+              <span class="text-sm">🍓</span>
+              <span class="text-xs">💜</span>
+              <span class="text-sm">🍓</span>
+            </div>
+
+            <!-- Piso medio del pastel -->
+            <div
+              class="w-48 h-12 bg-gradient-to-b from-purple-200 to-purple-300 shadow-md border-b-4 border-pink-400 flex items-center justify-center"
+            >
+              <span
+                class="text-[11px] font-extrabold text-purple-900 tracking-widest uppercase"
+                >BORAHAE FESTA</span
+              >
+            </div>
+
+            <!-- Base del pastel -->
+            <div
+              class="w-56 h-14 bg-gradient-to-b from-purple-800 via-indigo-900 to-purple-950 rounded-b-2xl shadow-2xl border-t-2 border-pink-300 flex items-center justify-center"
+            >
+              <span
+                class="text-xs font-black text-pink-300 tracking-widest uppercase neon-text-pink"
+                >HAPPY BIRTHDAY QUEEN</span
+              >
+            </div>
+
+            <!-- Plato de cristal del pastel -->
+            <div
+              class="w-64 h-3.5 bg-gradient-to-r from-purple-300 via-white to-purple-300 rounded-full shadow-[0_5px_15px_rgba(255,255,255,0.4)] mt-1"
+            ></div>
+          </div>
+
+          <!-- Botón para soplar -->
+          <div class="mt-8">
+            <button
+              id="blow-btn"
+              onclick="blowCandle()"
+              class="px-8 py-3.5 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:from-pink-600 hover:to-indigo-700 text-white font-bold rounded-full shadow-[0_0_30px_rgba(236,72,153,0.6)] hover:shadow-[0_0_40px_rgba(168,85,247,0.9)] hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5 mx-auto"
+            >
+              <span>Soplar la velita mágica</span> 🕯️✨
+            </button>
+
+            <!-- Feedback al soplar con verso de Magic Shop -->
+            <div
+              id="wish-feedback"
+              class="mt-6 p-4 rounded-2xl bg-purple-900/60 border border-purple-400/40 hidden animate-bounce-soft"
+            >
+              <p class="text-pink-300 font-handwriting text-3xl font-bold">
+                ¡Deseo recibido en el Magic Shop! ✨
+              </p>
+              <p class="text-xs text-purple-200 mt-1">
+                "En los días en que te canses, abre la puerta en tu corazón...
+                Magic Shop estará esperándote" 💜
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+      ====================================================================
+      SECCIÓN 4: 3 COSAS QUE TE HACEN ÚNICA & LLUVIA DE ABRAZOS ARMY
+      ==================================================================== 
+    -->
+      <section class="mb-16 text-center">
+        <div class="max-w-3xl mx-auto mb-12">
+          <span
+            class="text-xs font-bold uppercase tracking-widest text-purple-300 bg-purple-900/60 px-3 py-1 rounded-full border border-purple-400/30"
+          >
+            Lo que más admiro de ti 💜
+          </span>
+          <h2
+            class="text-2xl sm:text-4xl font-serif font-bold text-white mt-2 mb-8 neon-text-purple"
+          >
+            3 Razones por las que eres inigualable
+          </h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 text-left">
+            <div
+              class="kpop-glass-card p-6 rounded-2xl border border-pink-400/30 shadow-lg hover:border-pink-400/70 hover:scale-105 transition-all"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-pink-500/20 text-pink-300 flex items-center justify-center text-2xl mb-3"
+              >
+                😊
+              </div>
+              <h3 class="font-bold text-white text-base mb-1.5">
+                Tu Alegría Contagiosa
+              </h3>
+              <p class="text-xs text-purple-200/80 leading-relaxed">
+                Es imposible tener un mal día cuando estás cerca. Tu risa y
+                ocurrencias tienen el poder de levantarle el ánimo a cualquiera.
+              </p>
+            </div>
+
+            <div
+              class="kpop-glass-card p-6 rounded-2xl border border-purple-400/30 shadow-lg hover:border-purple-400/70 hover:scale-105 transition-all"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center text-2xl mb-3"
+              >
+                ✨
+              </div>
+              <h3 class="font-bold text-white text-base mb-1.5">
+                Tu Autenticidad
+              </h3>
+              <p class="text-xs text-purple-200/80 leading-relaxed">
+                Eres sincera, leal y siempre te mantienes fiel a quien eres. Esa
+                seguridad y brillo propio te hacen totalmente única, nunca lo dudes.
+              </p>
+            </div>
+
+            <div
+              class="kpop-glass-card p-6 rounded-2xl border border-indigo-400/30 shadow-lg hover:border-indigo-400/70 hover:scale-105 transition-all"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-300 flex items-center justify-center text-2xl mb-3"
+              >
+                🫶
+              </div>
+              <h3 class="font-bold text-white text-base mb-1.5">
+                Tu Gran Corazón
+              </h3>
+              <p class="text-xs text-purple-200/80 leading-relaxed">
+                Siempre atenta, comprensiva y lista para tender una mano o
+                compartir un abrazo. Tenerte al lado es un tesoro.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOTÓN VIRTUAL BORAHAE -->
+        <div
+          class="kpop-glass rounded-3xl p-8 border border-purple-400/30 inline-block shadow-2xl max-w-lg mx-auto text-center glow-border"
+        >
+          <p class="text-sm sm:text-base text-purple-200 mb-4">
+             ¡Te deseo un feliz cumple y mucha felicidad Estef!
+          </p>
+
+          <button
+            onclick="sendVirtualHug(event)"
+            class="px-8 py-3.5 bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:from-pink-600 hover:to-indigo-700 text-white font-bold rounded-full border border-purple-300/40 shadow-[0_0_25px_rgba(236,72,153,0.6)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 mx-auto"
+          >
+            <i
+              class="fa-solid fa-heart text-pink-300 text-lg animate-pulse"
+            ></i>
+            <span>Los mejores vibras para ti querida 💜</span>
+          </button>
+
+          <p id="hug-counter" class="text-xs text-pink-300 font-semibold mt-3">
+            ¡Haz clic tantas veces como quieras!
+          </p>
+        </div>
+      </section>
+
+      <!-- FOOTER CARIÑOSO -->
+      <footer
+        class="text-center pt-10 border-t border-purple-400/20 text-xs text-purple-300/70 pb-16"
+      >
+        <p class="text-sm text-purple-200 font-medium">
+          Hecho con todo el aprecio, ritmo y magia para tu cumpleaños 
+        </p>
+        <p class="mt-1 text-xs">
+        💜
+        </p>
+        <p class="mt-2 text-[10px] text-purple-400">
+          © Special Birthday •
+        </p>
+      </footer>
+    </main>
+
+    <!-- 
+    ====================================================================
+    MODAL INTERACTIVO DE PHOTOCARD (Detalle Holográfico)
+    ==================================================================== 
+  -->
+    <div
+      id="photocard-modal"
+      class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity"
+    >
+      <div
+        class="relative kpop-glass rounded-3xl p-6 sm:p-8 max-w-md w-full border border-purple-400/50 shadow-[0_0_50px_rgba(168,85,247,0.7)] text-center"
+      >
+        <!-- Botón de Cerrar -->
+        <button
+          onclick="closePhotocardModal()"
+          class="absolute top-4 right-4 text-purple-300 hover:text-white w-8 h-8 rounded-full bg-purple-900/50 flex items-center justify-center text-lg"
+        >
+          &times;
+        </button>
+
+        <span
+          class="text-[11px] font-bold tracking-wider text-pink-400 uppercase bg-pink-950/70 px-3 py-1 rounded-full border border-pink-400/40"
+        >
+          Photocard Oficial Desbloqueada 🌟
+        </span>
+
+        <h3
+          id="modal-card-title"
+          class="text-2xl font-serif font-bold text-white mt-3 mb-1"
+        ></h3>
+        <h4
+          id="modal-card-subtitle"
+          class="text-xs font-bold text-purple-300 uppercase tracking-widest mb-4"
+        ></h4>
+
+        <div
+          class="w-full h-48 rounded-2xl bg-gradient-to-tr from-purple-900 via-indigo-950 to-pink-900 border border-purple-400/30 flex items-center justify-center p-6 mb-4 shadow-inner"
+        >
+          <span class="text-6xl animate-bounce-soft" id="modal-card-icon"
+            >💜</span
+          >
+        </div>
+
+        <p
+          id="modal-card-desc"
+          class="text-sm text-purple-100 leading-relaxed font-sans"
+        ></p>
+
+        <button
+          onclick="closePhotocardModal()"
+          class="mt-6 px-6 py-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold hover:scale-105 active:scale-95 transition-all"
+        >
+          Guardar en mi álbum 💜
+        </button>
+      </div>
+    </div>
+
+    <!-- 
+    ====================================================================
+    MOTOR DE AUDIO K-POP SYNTH & EFECTOS (Web Audio API Profesional)
+    Reproductor de canciones locales y efectos celestiales
+    ==================================================================== 
+  -->
+    <script>
+      /*
+       * Configuración del AudioContext y Sintetizador Celestial
+       */
+      let audioCtx = null;
+      let isMusicPlaying = false;
+      let currentTrackIndex = 0;
+      const TRACKS = [
+        {
+          title: "BTS - Magic Shop",
+          artist: "BTS - Map of the Soul: Persona",
+          src: "Magic%20Shop.mp3",
+        },
+        {
+          title: "BTS - Mikrokosmos (\uC18C\uC6B0\uC8FC)",
+          artist: "BTS - Map of the Soul: Persona",
+          src: "%EC%86%8C%EC%9A%B0%EC%A3%BC%20(Mikrokosmos).mp3",
+        },
+        {
+          title: "TWICE - What Is Love?",
+          artist: "TWICE - What Is Love?",
+          src: "TWICE%20_What%20is%20Love__%20M_V.mp3",
+        },
+      ];
+      const musicPlayer = new Audio(TRACKS[0].src);
+      musicPlayer.addEventListener("ended", changeTrack);
+      musicPlayer.addEventListener("play", () => {
+        isMusicPlaying = true;
+        updateMusicControls();
+      });
+      musicPlayer.addEventListener("pause", () => {
+        isMusicPlaying = false;
+        updateMusicControls();
+      });
+      musicPlayer.addEventListener("error", () => {
+        document.getElementById("current-song-artist").textContent =
+          "No se pudo cargar esta cancion. Revisa que el archivo siga en Cumple.";
+      });
+
+      function initAudio() {
+        if (!audioCtx)
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+      }
+
+      function playMusicBoxChime(freq, duration = 0.5, volume = 0.12) {
+        if (!audioCtx) return;
+        const now = audioCtx.currentTime;
+        const oscillator = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(freq, now);
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(volume, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+        oscillator.connect(gain);
+        gain.connect(audioCtx.destination);
+        oscillator.start(now);
+        oscillator.stop(now + duration);
+      }
+
+      function updateMusicControls() {
+        const playIcon = document.getElementById("play-icon");
+        const vinylDisc = document.getElementById("vinyl-disc");
+        const button = document.getElementById("play-pause-btn");
+        if (!playIcon || !vinylDisc || !button) return;
+        playIcon.className = `fa-solid ${isMusicPlaying ? "fa-pause" : "fa-play"} text-xs`;
+        button.setAttribute(
+          "aria-label",
+          isMusicPlaying ? "Pausar musica" : "Reproducir musica",
+        );
+        vinylDisc.classList.toggle("animate-spin-slow", isMusicPlaying);
+      }
+      function toggleMusic() {
+        if (musicPlayer.paused)
+          musicPlayer.play().catch(() => {
+            document.getElementById("current-song-artist").textContent =
+              "No se pudo iniciar la reproduccion. Vuelve a intentarlo.";
+          });
+        else musicPlayer.pause();
+      }
+      function changeTrack() {
+        currentTrackIndex = (currentTrackIndex + 1) % TRACKS.length;
+        const track = TRACKS[currentTrackIndex];
+        document.getElementById("current-song-title").textContent = track.title;
+        document.getElementById("current-song-artist").textContent =
+          track.artist;
+        musicPlayer.src = track.src;
+        musicPlayer.load();
+        if (isMusicPlaying) musicPlayer.play().catch(() => {});
+      }
+
+      function playMagicChime() {
+        if (!audioCtx) return;
+        [523.25, 659.25, 783.99, 1046.5].forEach((freq, index) => {
+          setTimeout(() => playMusicBoxChime(freq, 0.7, 0.1), index * 75);
+        });
+      }
+
+      function animateEqualizer() {
+        const bars = document.querySelectorAll(".eq-bar");
+        bars.forEach((bar) => {
+          const h = Math.floor(Math.random() * 16) + 4;
+          bar.style.height = `${h}px`;
+        });
+      }
+
+      /*
+       * ====================================================================
+       * MODOS DEL ARMY BOMB (LIGHTSTICK VIRTUAL)
+       * ====================================================================
+       */
+      let armyBombModes = [
+        {
+          name: "Borahae 💜",
+          color: "#a855f7",
+          halo: "rgba(168, 85, 247, 0.5)",
+          bgGlow: "#a855f7",
+        },
+        {
+          name: "Golden ✨",
+          color: "#facc15",
+          halo: "rgba(250, 204, 21, 0.6)",
+          bgGlow: "#facc15",
+        },
+        {
+          name: "Neon Pink 💖",
+          color: "#f43f5e",
+          halo: "rgba(244, 63, 94, 0.6)",
+          bgGlow: "#f43f5e",
+        },
+        {
+          name: "Galaxy Teal 🌌",
+          color: "#2dd4bf",
+          halo: "rgba(45, 212, 191, 0.6)",
+          bgGlow: "#2dd4bf",
+        },
+      ];
+      let currentBombModeIndex = 0;
+
+      function cycleArmyBombMode() {
+        initAudio();
+        currentBombModeIndex =
+          (currentBombModeIndex + 1) % armyBombModes.length;
+        const mode = armyBombModes[currentBombModeIndex];
+
+        const bulb = document.getElementById("bomb-bulb");
+        const halo = document.getElementById("bomb-halo");
+        const label = document.getElementById("bomb-mode-label");
+
+        bulb.style.background = mode.color;
+        bulb.style.boxShadow = `0 0 25px ${mode.color}`;
+        halo.style.background = mode.halo;
+        label.innerText = mode.name;
+
+        // Sonido de clic sónico
+        playMusicBoxChime(880 + currentBombModeIndex * 120, 0.4, 0.15);
+
+        // Efecto de olas de confeti con los colores del modo
+        confetti({
+          particleCount: 40,
+          spread: 60,
+          origin: { x: 0.9, y: 0.85 },
+          colors: [mode.color, "#ffffff", "#e879f9"],
+        });
+      }
+
+      /*
+       * ====================================================================
+       * APERTURA DEL SOBRE INVITACIÓN
+       * ====================================================================
+       */
+      function openGift() {
+        initAudio();
+        playMagicChime();
+
+        // Confeti de bienvenida K-Pop
+        confetti({
+          particleCount: 100,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ["#c084fc", "#f472b6", "#fbbf24", "#818cf8", "#ffffff"],
+        });
+
+        setTimeout(() => {
+          confetti({
+            particleCount: 60,
+            angle: 60,
+            spread: 60,
+            origin: { x: 0.05, y: 0.6 },
+          });
+          confetti({
+            particleCount: 60,
+            angle: 120,
+            spread: 60,
+            origin: { x: 0.95, y: 0.6 },
+          });
+        }, 250);
+
+        // Transición cinematográfica
+        const intro = document.getElementById("intro-screen");
+        const main = document.getElementById("main-content");
+
+        intro.style.opacity = "0";
+        intro.style.pointerEvents = "none";
+
+        setTimeout(() => {
+          intro.style.display = "none";
+          main.classList.remove("hidden");
+          setTimeout(() => {
+            main.classList.add("opacity-100");
+          }, 50);
+
+          musicPlayer.play().catch(() => {});
+        }, 800);
+      }
+
+      /*
+       * ====================================================================
+       * SOPLAR LA VELA DEL PASTEL MAGIC SHOP
+       * ====================================================================
+       */
+      let candleBlown = false;
+      function blowCandle() {
+        if (candleBlown) return;
+        candleBlown = true;
+
+        initAudio();
+        playMusicBoxChime(880, 0.6, 0.2);
+        setTimeout(() => playMusicBoxChime(1046.5, 0.8, 0.25), 120);
+        setTimeout(() => playMusicBoxChime(1318.5, 1.2, 0.2), 240);
+
+        const flame = document.getElementById("candle-flame");
+        const smoke = document.getElementById("candle-smoke");
+        const btn = document.getElementById("blow-btn");
+        const feedback = document.getElementById("wish-feedback");
+
+        flame.classList.add("opacity-0", "scale-50");
+
+        setTimeout(() => {
+          flame.style.display = "none";
+          smoke.classList.remove("hidden");
+          feedback.classList.remove("hidden");
+
+          btn.innerHTML = "<span>¡Deseo Concedido con Éxito! 💜</span> ✨";
+          btn.classList.replace("from-pink-500", "from-emerald-500");
+          btn.classList.replace("via-purple-600", "via-teal-600");
+          btn.classList.replace("to-indigo-600", "to-emerald-700");
+          btn.disabled = true;
+
+          // Mega explosión de confeti y estrellas
+          confetti({
+            particleCount: 160,
+            spread: 120,
+            origin: { y: 0.55 },
+            colors: ["#a855f7", "#ec4899", "#ffd700", "#38bdf8", "#ffffff"],
+          });
+        }, 350);
+      }
+
+      /*
+       * ====================================================================
+       * MODAL DE INSPECCIÓN DE PHOTOCARDS
+       * ====================================================================
+       */
+      function openPhotocardModal(title, subtitle, desc) {
+        initAudio();
+        playMusicBoxChime(783.99, 0.4, 0.15);
+
+        document.getElementById("modal-card-title").innerText = title;
+        document.getElementById("modal-card-subtitle").innerText = subtitle;
+        document.getElementById("modal-card-desc").innerText = desc;
+
+        const modal = document.getElementById("photocard-modal");
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+      }
+
+      function closePhotocardModal() {
+        const modal = document.getElementById("photocard-modal");
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }
+
+      window.addEventListener("click", function (e) {
+        const modal = document.getElementById("photocard-modal");
+        if (e.target === modal) {
+          closePhotocardModal();
+        }
+      });
+
+      /*
+       * ====================================================================
+       * GACHA PULL DE LA FORTUNA K-POP
+       * ====================================================================
+       */
+      const GACHA_FORTUNES = [
+        "🌟 'Tu sonrisa tiene el poder de convertir cualquier día gris en un concierto de fuegos artificiales. ¡Feliz cumple!'",
+        "💜 'Decretado: este año vendrá con entradas para ver a tus artistas favoritos y recuerdos inolvidables.'",
+        "👑 'Eres la Main Dancer, Main Vocal y Visual de este grupo de amigos. ¡Nunca dejes de brillar!'",
+        "✨ 'En el universo de las amistades, tú eres mi constelación favorita. ¡Te quiero un montón!'",
+      ];
+
+      function pullLuckyGacha() {
+        initAudio();
+        playMagicChime();
+        const fortune =
+          GACHA_FORTUNES[Math.floor(Math.random() * GACHA_FORTUNES.length)];
+
+        openPhotocardModal(
+          "¡Carta Especial Gacha!",
+          "Fortuna de Cumpleaños Desbloqueada 🎁",
+          fortune,
+        );
+
+        confetti({
+          particleCount: 90,
+          spread: 90,
+          origin: { y: 0.6 },
+          colors: ["#ffd700", "#f43f5e", "#c084fc"],
+        });
+      }
+
+      /*
+       * ====================================================================
+       * ABRAZO VIRTUAL BORAHAE & PARTICULAS FLOTANTES
+       * ====================================================================
+       */
+      let hugCount = 0;
+      const BT21_ICONS = ["💜", "🌸", "✨", "🐰", "❤️", "🐶", "🐨", "🦄", "🥰"];
+
+      function sendVirtualHug(event) {
+        hugCount++;
+        initAudio();
+        // Nota armónica ascendente con cada clic
+        playMusicBoxChime(523.25 + (hugCount % 8) * 45, 0.4, 0.18);
+
+        const counter = document.getElementById("hug-counter");
+        counter.innerText = `¡Llevas ${hugCount} deseos magicos${hugCount > 1 ? "s" : ""} acumulado${hugCount > 1 ? "s" : ""}! 🥰💜`;
+
+        // Generar 7 partículas flotantes (los 7 de BTS)
+        for (let i = 0; i < 7; i++) {
+          const icon = document.createElement("div");
+          icon.className = "floating-heart";
+          icon.innerHTML =
+            BT21_ICONS[Math.floor(Math.random() * BT21_ICONS.length)];
+
+          const x = event
+            ? event.clientX + (Math.random() * 120 - 60)
+            : window.innerWidth / 2;
+          const y = event ? event.clientY : window.innerHeight / 2;
+
+          icon.style.left = `${Math.max(10, Math.min(window.innerWidth - 40, x))}px`;
+          icon.style.top = `${y}px`;
+          icon.style.fontSize = `${Math.floor(Math.random() * 18 + 20)}px`;
+
+          document.body.appendChild(icon);
+
+          setTimeout(() => {
+            icon.remove();
+          }, 3400);
+        }
+      }
+
+      /*
+       * ====================================================================
+       * FONDO CANVAS: GALAXIA, ESTRELLAS FUGACES Y POLVO CÓSMICO
+       * ====================================================================
+       */
+      const canvas = document.getElementById("galaxy-canvas");
+      const ctx = canvas.getContext("2d");
+      let stars = [];
+      let shootingStars = [];
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initStars();
+      }
+
+      function initStars() {
+        stars = [];
+        const numStars = Math.floor((canvas.width * canvas.height) / 4500);
+        for (let i = 0; i < numStars; i++) {
+          stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 1.6 + 0.3,
+            alpha: Math.random() * 0.8 + 0.2,
+            speed: Math.random() * 0.02 + 0.005,
+            color:
+              Math.random() > 0.4
+                ? "#E9D5FF"
+                : Math.random() > 0.5
+                  ? "#F472B6"
+                  : "#93C5FD",
+          });
+        }
+      }
+
+      function addShootingStar() {
+        if (Math.random() < 0.015 && shootingStars.length < 3) {
+          shootingStars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * (canvas.height * 0.4),
+            len: Math.random() * 90 + 50,
+            speed: Math.random() * 7 + 5,
+            angle: Math.PI / 4 + (Math.random() * 0.2 - 0.1),
+            alpha: 1,
+          });
+        }
+      }
+
+      function drawGalaxy() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Dibujar estrellas titilantes
+        stars.forEach((star) => {
+          star.alpha += star.speed;
+          const currentAlpha = Math.abs(Math.sin(star.alpha));
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.fillStyle = star.color;
+          ctx.globalAlpha = currentAlpha;
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = star.color;
+          ctx.fill();
+        });
+
+        // Dibujar estrellas fugaces
+        addShootingStar();
+        for (let i = shootingStars.length - 1; i >= 0; i--) {
+          const s = shootingStars[i];
+          ctx.beginPath();
+          const endX = s.x - Math.cos(s.angle) * s.len;
+          const endY = s.y - Math.sin(s.angle) * s.len;
+          const grad = ctx.createLinearGradient(s.x, s.y, endX, endY);
+          grad.addColorStop(0, `rgba(255, 255, 255, ${s.alpha})`);
+          grad.addColorStop(1, "rgba(168, 85, 247, 0)");
+
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 2;
+          ctx.moveTo(s.x, s.y);
+          ctx.lineTo(endX, endY);
+          ctx.stroke();
+
+          s.x += Math.cos(s.angle) * s.speed;
+          s.y += Math.sin(s.angle) * s.speed;
+          s.alpha -= 0.018;
+
+          if (s.alpha <= 0 || s.x > canvas.width || s.y > canvas.height) {
+            shootingStars.splice(i, 1);
+          }
+        }
+
+        ctx.globalAlpha = 1;
+        ctx.shadowBlur = 0;
+        requestAnimationFrame(drawGalaxy);
+      }
+
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+      drawGalaxy();
+    </script>
+  </body>
+</html>
